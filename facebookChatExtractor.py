@@ -11,6 +11,7 @@ def main():
 
     # Doesn't take into account the group chats. ( Only one-on-one )
     user_interested = 'YOUR_FRIEND_NAME_HERE'
+    myself = 'Saurabh Paliwal'
 
     while(True):
         try:
@@ -27,14 +28,14 @@ def main():
                         break
                 if(valid_conversation == True):
 
-                    words_by_saurabh = 0
+                    words_by_me = 0
                     words_by_user = 0
 
                     while(True):
                         try:
                             for conversation_data in my_conversation['messages']['data']:
-                                if(conversation_data['from']['name'] == 'Saurabh Paliwal'):
-                                    words_by_saurabh += len(conversation_data['message'].split(" "))
+                                if(conversation_data['from']['name'] == myself):
+                                    words_by_me += len(conversation_data['message'].split(" "))
                                 elif(conversation_data['from']['name'] == user_interested):
                                     words_by_user += len(conversation_data['message'].split(" "))
 
@@ -47,9 +48,9 @@ def main():
                             my_conversation = graph.get_connections("me","conversations",conversation_id=conversation_id,limit=limit,until=until,__paging_token=__paging_token)
                         except(KeyError):
                             break
-                    print "Saurabh typed " + str(words_by_saurabh) + " words."
+                    print myself.split(" ")[0] + " typed " + str(words_by_me) + " words."
                     print user_interested.split(" ")[0] + " typed " + str(words_by_user) + " words."
-                    print "Saurabh types " + str((words_by_saurabh*100.0)/(words_by_saurabh+words_by_user)) + " % of the total words in the chat."
+                    print myself.split(" ")[0] + " types " + str((words_by_me*100.0)/(words_by_me+words_by_user)) + " % of the total words in the chat."
 
             next_url = conversations['paging']['next']
             parameters = next_url.split("?")[1].split("&")

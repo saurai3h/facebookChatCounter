@@ -11,7 +11,7 @@ def main():
 
     # Doesn't take into account the group chats. ( Only one-on-one )
     user_interested = 'YOUR_FRIEND_NAME_HERE'
-    myself = 'Saurabh Paliwal'
+    myself = 'YOUR_NAME_HERE'
 
     while(True):
         try:
